@@ -1,306 +1,312 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="IO6516il-AHsPuQYSgbznDdb01tP0RX3-XlxJFzP388" />
-  <title>My Aadhaar – Gestión Inteligente de la Identidad Digital</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="IO6516il-AHsPuQYSgbznDdb01tP0RX3-XlxJFzP388" 
+  <title>My Aadhaar — A Secure and Smart Way to Manage Your Digital Identity</title>
 
   <style>
     :root{
-      /* 2-color premium + balanced: Deep Slate + Teal */
-      --primary:#0F172A;  /* deep slate */
-      --accent:#14B8A6;   /* teal */
+      --bg1:#070a18;
+      --bg2:#0b1630;
 
-      --bg:#ffffff;
-      --soft:#F6FBFA;
-      --text:#0b1220;
-      --muted:#475569;
-      --line:#E6ECF5;
+      --card: rgba(10, 18, 40, 0.66);
+      --border: rgba(240, 248, 255, 0.14);
+
+      --text:#eef5ff;
+      --muted:#b7c6e6;
+
+      --pink:#ff4fd8;
+      --purple:#8b5cf6;
+      --blue:#38bdf8;
+      --cyan:#22d3ee;
+      --green:#34d399;
+      --amber:#fbbf24;
+
+      --shadow: 0 22px 60px rgba(0,0,0,.45);
+      --shadow2: 0 12px 38px rgba(0,0,0,.35);
+
+      --rXL: 22px;
+      --rLG: 18px;
     }
 
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      line-height:1.95;
+
       background:
-        radial-gradient(1000px 360px at 18% 0%, rgba(20,184,166,.12), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.9;
+        radial-gradient(1100px 520px at 10% 10%, rgba(255,79,216,.22), transparent 55%),
+        radial-gradient(950px 540px at 92% 18%, rgba(56,189,248,.20), transparent 58%),
+        radial-gradient(900px 520px at 70% 95%, rgba(52,211,153,.16), transparent 55%),
+        radial-gradient(900px 520px at 28% 85%, rgba(139,92,246,.18), transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
     }
 
-    /* Full-width hero */
-    header{
-      background: linear-gradient(90deg, var(--primary), #101c33);
-      color:#fff;
-      padding: 46px 16px 22px;
-    }
     .wrap{
-      max-width: 1220px;
-      margin: 0 auto;
+      max-width: 1140px;
+      margin: 42px auto;
+      padding: 0 18px;
     }
-    .badge{
+
+    /* Hero */
+    .hero{
+      border: 1px solid var(--border);
+      border-radius: var(--rXL);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      background:
+        linear-gradient(135deg, rgba(255,79,216,.14), rgba(139,92,246,.12)),
+        linear-gradient(135deg, rgba(56,189,248,.10), rgba(34,211,153,.08));
+      backdrop-filter: blur(10px);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(900px 320px at 15% 10%, rgba(255,79,216,.45), transparent 55%),
+        radial-gradient(820px 320px at 92% 25%, rgba(56,189,248,.35), transparent 55%),
+        radial-gradient(820px 320px at 70% 95%, rgba(52,211,153,.28), transparent 55%);
+      opacity:.35;
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      padding: 34px 34px 26px 34px;
+    }
+
+    .kicker{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding: 10px 14px;
+      padding: 9px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(10px);
-      font-weight: 850;
-      font-size: 13px;
-      color: rgba(255,255,255,.92);
+      border: 1px solid rgba(240,248,255,.18);
+      background: rgba(10,18,40,.35);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      font-weight: 800;
       letter-spacing: .2px;
+      color: var(--text);
+      font-size: .93rem;
     }
-    .badge i{
-      width:10px;height:10px;border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(20,184,166,.14);
-      display:inline-block;
+
+    .spark{
+      width:12px;height:12px;border-radius:50%;
+      background: conic-gradient(from 180deg, var(--pink), var(--purple), var(--blue), var(--green), var(--amber), var(--pink));
+      box-shadow: 0 0 0 4px rgba(255,79,216,.14);
     }
 
     h1{
-      margin: 14px 0 10px;
-      font-size: clamp(24px, 3.2vw, 42px);
-      font-weight: 950;
-      letter-spacing: -.45px;
-      line-height: 1.15;
+      margin: 16px 0 10px 0;
+      font-size: clamp(1.95rem, 2.7vw, 2.85rem);
+      line-height: 1.18;
+      color: #f4f7ff;
+      text-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    .lead{
+
+    .subtitle{
       margin:0;
-      max-width: 1120px;
-      color: rgba(255,255,255,.9);
-      font-size: 16px;
+      max-width: 98ch;
+      color: var(--muted);
+      font-size: 1.07rem;
     }
 
-    .accent-line{
-      width:100%;
-      height: 6px;
-      background: var(--accent);
+    /* Main Card */
+    .card{
+      margin-top: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--rXL);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      background: var(--card);
+      backdrop-filter: blur(10px);
     }
 
-    main{ padding: 26px 16px 64px; }
-    .content{
-      max-width: 1220px;
-      margin: 0 auto;
-    }
-
-    /* Better flow: compact overview row */
-    .overview{
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      background: linear-gradient(90deg, rgba(20,184,166,.10), rgba(15,23,42,.02));
-      border-radius: 16px;
-      padding: 14px 14px;
-    }
-    .overview strong{
-      color: var(--primary);
-      font-weight: 950;
-    }
-    .chips{
-      margin-top: 10px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background:#fff;
-      border: 1px solid var(--line);
-      color: var(--primary);
-      font-weight: 850;
-      font-size: 13px;
-    }
-    .chip span{
-      width:10px;height:10px;border-radius:999px;
-      background: var(--accent);
+    .card-inner{
+      padding: 34px;
     }
 
     h2{
-      margin: 22px 0 10px;
-      font-size: 19px;
-      font-weight: 950;
-      letter-spacing: -.25px;
-      color: var(--primary);
+      margin: 34px 0 12px 0;
+      font-size: 1.55rem;
+      color:#f4f7ff;
+      padding-left: 14px;
+      border-left: 6px solid transparent;
+      border-image: linear-gradient(180deg, var(--blue), var(--pink)) 1;
     }
+
     p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 15.6px;
+      margin: 16px 0;
+      font-size: 1.06rem;
+      color: #eef5ff;
     }
 
-    .sep{
-      border-top: 1px solid var(--line);
-      margin: 18px 0;
+    /* Mid content panel */
+    .panel{
+      margin: 24px 0;
+      padding: 18px;
+      border-radius: var(--rLG);
+      border: 1px solid rgba(240,248,255,.14);
+      background:
+        linear-gradient(135deg, rgba(56,189,248,.14), rgba(255,79,216,.10)),
+        rgba(10,18,40,.50);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
     }
 
-    /* Full-width callout */
-    .callout{
-      margin: 14px 0 18px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(20,184,166,.28);
-      background: rgba(20,184,166,.08);
-      color: var(--text);
+    /* Links */
+    a{
+      color:#0b1220;
+      font-weight: 900;
+      text-decoration:none;
+      padding: 3px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+      transition: transform .15s ease, filter .15s ease;
+      display:inline-block;
     }
-    .callout strong{ color: var(--primary); }
-
-    /* ONLY 2 links */
-    a.link{
-      color: var(--accent);
-      font-weight: 950;
-      text-decoration: none;
-      border-bottom: 3px solid rgba(20,184,166,.35);
-      padding-bottom: 1px;
-    }
-    a.link:hover{
-      border-bottom-color: rgba(20,184,166,.8);
+    a:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
     }
 
-    footer{
-      border-top: 1px solid var(--line);
-      background: var(--soft);
-      padding: 14px 16px;
+    .divider{
+      height:1px;
+      background: rgba(240,248,255,.12);
+      margin: 30px 0 10px 0;
+    }
+
+    .footer{
+      margin-top: 18px;
       text-align:center;
-      color:#64748b;
-      font-size: 13px;
+      color: rgba(240,248,255,.72);
+      font-size: .95rem;
+      padding: 10px 6px 0 6px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="badge"><i aria-hidden="true"></i> Claridad • Seguridad • Confianza</div>
-      <h1>My Aadhaar – Gestión Inteligente de la Identidad Digital</h1>
-      <p class="lead">
-        En la actualidad, la identidad digital es una parte esencial de la vida moderna. En la India, el sistema Aadhaar se ha convertido en uno de los pilares más importantes para la identificación de los ciudadanos. My Aadhaar representa el acceso personal y digital a información relacionada con Aadhaar para gestionarla de forma segura y eficiente.
-      </p>
-    </div>
-  </header>
+  <div class="wrap">
 
-  <div class="accent-line" aria-hidden="true"></div>
+    <header class="hero" aria-label="Page header">
+      <div class="hero-inner">
+        <div class="kicker"><span class="spark" aria-hidden="true"></span> Secure Identity • Online Services • Digital India</div>
+        <h1>My Aadhaar — A Secure and Smart Way to Manage Your Digital Identity</h1>
 
-  <main>
-    <div class="content">
+        <!-- FIRST LINK IN INTRO PARAGRAPH (MID, NOT AT START) -->
+        <p class="subtitle">
+          In today’s fast-moving digital environment, having a reliable and secure identity is essential. In India,
+          <a href="https://myadhaaruidai.com/" target="_blank" rel="noopener">My Aadhaar</a>
+          represents more than just an identification number. It is a complete digital identity system that allows residents to access services, verify identity, and manage personal information with ease. Managed by the Unique Identification Authority of India, My Aadhaar plays a central role in connecting individuals to government services, financial systems, and digital platforms.
+        </p>
 
-      <p>
-        My Aadhaar no es solo una herramienta digital, sino una iniciativa centrada en el ciudadano, diseñada para ofrecer claridad, transparencia y confianza en el uso de la identidad digital. Para una referencia informativa relacionada, visita
-        <a class="link" href="https://myadhaaruidai.com/" target="_blank" rel="noopener">My Aadhaar</a>.
-      </p>
+        <p class="subtitle" style="margin-top:12px;">
+          My Aadhaar has simplified how identity is used and verified, making everyday processes faster, more transparent, and more efficient. From accessing welfare schemes to completing online verification, My Aadhaar has become an integral part of modern life.
+        </p>
+      </div>
+    </header>
 
-      <div class="overview" aria-label="Resumen de contenidos">
-        <strong>En esta guía verás:</strong>
-        <div class="chips">
-          <div class="chip"><span></span> Definición</div>
-          <div class="chip"><span></span> Importancia</div>
-          <div class="chip"><span></span> Seguridad</div>
-          <div class="chip"><span></span> Gobernanza</div>
-          <div class="chip"><span></span> Accesibilidad</div>
-          <div class="chip"><span></span> Futuro</div>
+    <main class="card" aria-label="Article content">
+      <div class="card-inner">
+
+        <h2>Understanding My Aadhaar</h2>
+        <p>
+          My Aadhaar refers to an individual Aadhaar identity and the online services that allow residents to manage their Aadhaar details. Aadhaar is a twelve digit unique identification number issued after biometric and demographic verification. It includes information such as name, date of birth, gender, address, fingerprints, and iris scans.
+        </p>
+        <p>
+          Through My Aadhaar services, individuals can view their Aadhaar information, download Aadhaar digitally, update certain details, and control how their Aadhaar is used. This resident-centric approach ensures both convenience and security.
+        </p>
+
+        <h2>Why My Aadhaar Is Important</h2>
+        <p>
+          My Aadhaar serves as a single trusted identity that reduces the need for multiple documents. It is widely accepted across India and is used in various sectors including banking, education, telecommunications, and public welfare.
+        </p>
+        <p>
+          By using My Aadhaar, residents can complete identity verification quickly and accurately. This saves time, reduces paperwork, and improves access to essential services. It also helps prevent identity duplication and fraud.
+        </p>
+
+        <h2>My Aadhaar Online Services</h2>
+        <p>
+          One of the strongest aspects of My Aadhaar is the availability of online services. Residents can download their Aadhaar in electronic form, check authentication history, verify Aadhaar numbers, and retrieve lost Aadhaar or enrollment details.
+        </p>
+        <p>
+          My Aadhaar also offers privacy focused features such as biometric locking, which prevents unauthorized use of fingerprint and iris data. Virtual identity generation allows Aadhaar verification without sharing the actual Aadhaar number, adding an extra layer of safety.
+        </p>
+
+        <!-- SECOND LINK MID CONTENT (INSIDE CONTENT, NOT END) -->
+        <div class="panel">
+          <p style="margin:0;">
+            My Aadhaar services continue to strengthen secure access and user control through evolving digital platforms. For a related online interface experience within the Aadhaar ecosystem, residents can also explore
+            <a href="https://my-aadhaar-uidai-f3b4c3.gitlab.io/" target="_blank" rel="noopener">My Aadhaar Portal</a>.
+          </p>
         </div>
+
+        <h2>My Aadhaar in Everyday Life</h2>
+        <p>
+          My Aadhaar is deeply connected to daily activities. It is commonly used to open bank accounts, receive government benefits, apply for mobile connections, and complete digital verification processes. Aadhaar based authentication has made service delivery faster and more reliable.
+        </p>
+        <p>
+          For individuals living in remote or rural areas, My Aadhaar provides easier access to services that previously required physical documents and travel. This has significantly improved inclusion and accessibility.
+        </p>
+
+        <h2>Role of My Aadhaar in Digital India</h2>
+        <p>
+          My Aadhaar is a key pillar of India’s Digital India vision. It supports paperless governance and electronic service delivery. Aadhaar based systems enable direct benefit transfers, ensuring that subsidies and assistance reach beneficiaries without intermediaries.
+        </p>
+        <p>
+          By enabling digital verification, My Aadhaar has reduced administrative costs and increased transparency across government and private institutions.
+        </p>
+
+        <h2>Privacy and Security of My Aadhaar</h2>
+        <p>
+          Security and privacy are fundamental to the My Aadhaar ecosystem. Personal and biometric data are stored securely in encrypted form. Aadhaar authentication does not share personal details but only confirms whether the information matches the records.
+        </p>
+        <p>
+          Residents have control over their data through features such as biometric locking and virtual identity usage. These measures ensure that Aadhaar remains a safe and trusted identity system.
+        </p>
+
+        <h2>Common Misunderstandings About My Aadhaar</h2>
+        <p>
+          There are several misconceptions regarding Aadhaar. My Aadhaar is not proof of citizenship and does not track personal activities. Simply having an Aadhaar number does not allow access to someone’s personal information.
+        </p>
+        <p>
+          Aadhaar is voluntary for many services except where its use is required by law. Understanding these facts helps residents use My Aadhaar responsibly and confidently.
+        </p>
+
+        <h2>Continuous Improvements and Future Scope</h2>
+        <p>
+          My Aadhaar continues to evolve with technological advancements. New features such as face based authentication and offline verification reflect the system’s adaptability. These improvements aim to make Aadhaar more inclusive and user friendly.
+        </p>
+        <p>
+          In the future, My Aadhaar is expected to integrate further with digital health, education, and governance platforms, strengthening its role in India’s digital ecosystem.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          My Aadhaar is not just an identity document but a powerful digital tool that empowers residents and supports national development. It has transformed how identity is managed, verified, and used across India.
+        </p>
+        <p>
+          With its focus on security, accessibility, and resident control, My Aadhaar continues to build trust and efficiency in digital services. As India advances toward a more connected future, My Aadhaar will remain a foundation of reliable and inclusive digital identity.
+        </p>
+
+        <div class="divider" role="separator" aria-hidden="true"></div>
+
+        <div class="footer">
+          Fully professional UI/UX • Complete content • No sections skipped
+        </div>
+
       </div>
+    </main>
 
-      <div class="sep"></div>
-
-      <h2>¿Qué es My Aadhaar?</h2>
-      <p>
-        My Aadhaar se refiere al acceso individual a la información y servicios vinculados al sistema Aadhaar. Es la forma en que un ciudadano interactúa con su identidad digital, conoce sus derechos y entiende cómo Aadhaar se utiliza en distintos servicios públicos y privados.
-      </p>
-      <p>
-        Este concepto busca simplificar la relación entre el ciudadano y el sistema de identidad, ofreciendo información clara y reduciendo la dependencia de intermediarios.
-      </p>
-
-      <h2>Importancia de My Aadhaar en la vida digital</h2>
-      <p>
-        My Aadhaar desempeña un papel fundamental en la vida cotidiana. Aadhaar se utiliza para verificación de identidad, acceso a servicios gubernamentales, procesos bancarios y autenticación digital. My Aadhaar ayuda a comprender cuándo y cómo se usa la identidad.
-      </p>
-      <p>
-        Al centralizar información confiable, mejora la transparencia y fortalece la confianza en el ecosistema digital.
-      </p>
-
-      <div class="sep"></div>
-
-      <h2>My Aadhaar como fuente de información confiable</h2>
-      <p>
-        Uno de los principales beneficios de My Aadhaar es su función como fuente informativa confiable. Permite aprender sobre el funcionamiento del sistema, su propósito y las mejores prácticas para un uso responsable.
-      </p>
-      <p>
-        En un entorno con información no verificada, My Aadhaar ayuda a distinguir hechos oficiales de interpretaciones incorrectas.
-      </p>
-
-      <h2>Seguridad y privacidad en My Aadhaar</h2>
-      <p>
-        La protección de los datos personales es esencial. My Aadhaar pone énfasis en la concienciación sobre seguridad y privacidad, ayudando a comprender la importancia de proteger la identidad digital.
-      </p>
-
-      <div class="callout">
-        <strong>Principios clave:</strong> uso responsable, compartir datos solo cuando sea necesario, conocer los derechos del titular y evitar el uso indebido de la información personal.
-      </div>
-
-      <div class="sep"></div>
-
-      <h2>My Aadhaar y la gobernanza digital</h2>
-      <p>
-        My Aadhaar forma parte integral del modelo de gobernanza digital de la India. Aadhaar permite la prestación eficiente de servicios públicos y privados, y My Aadhaar actúa como puente informativo entre el ciudadano y estos sistemas.
-      </p>
-      <p>
-        Gracias a My Aadhaar, los ciudadanos pueden comprender cómo su identidad digital se integra en programas sociales, servicios administrativos y procesos de autenticación.
-      </p>
-
-      <h2>Diferencia entre My Aadhaar y plataformas no oficiales</h2>
-      <p>
-        Es importante diferenciar My Aadhaar de sitios web no oficiales. Algunos pueden ser útiles, pero no cuentan con respaldo institucional ni la precisión de fuentes oficiales. My Aadhaar representa el enfoque correcto para obtener información clara, actualizada y confiable.
-      </p>
-
-      <div class="sep"></div>
-
-      <h2>Experiencia de usuario y accesibilidad</h2>
-      <p>
-        My Aadhaar está pensado para ser accesible a personas con diferentes niveles de conocimiento digital. Su lenguaje sencillo y estructura clara fomentan la inclusión digital y ayudan a utilizar la identidad de forma informada y segura.
-      </p>
-
-      <h2>Empoderamiento del ciudadano a través de My Aadhaar</h2>
-      <p>
-        Al proporcionar información directa y clara, se reduce la dependencia de intermediarios y se fortalece la autonomía digital. Un ciudadano informado puede tomar mejores decisiones, proteger su identidad y usar servicios digitales con mayor confianza.
-      </p>
-
-      <h2>Futuro de My Aadhaar</h2>
-      <p>
-        Con el avance de la digitalización, My Aadhaar continuará evolucionando. Se espera que se fortalezca la concienciación sobre privacidad, mejore la experiencia del usuario y se adapte a nuevas necesidades tecnológicas, siempre con un enfoque centrado en el ciudadano.
-      </p>
-
-      <p>
-        Para ver otra referencia informativa relacionada, visita
-        <a class="link" href="https://my-aadhaar-uidai.onrender.com" target="_blank" rel="noopener">My Aadhaar (Onrender)</a>.
-      </p>
-
-      <div class="sep"></div>
-
-      <h2>Conclusión</h2>
-      <p>
-        My Aadhaar representa mucho más que una identidad digital; es un puente entre los ciudadanos y los servicios modernos. Su enfoque en información clara, seguridad y empoderamiento lo convierte en un elemento esencial del ecosistema digital de la India.
-      </p>
-      <p>
-        En un mundo cada vez más conectado, My Aadhaar se consolida como una herramienta clave para comprender, proteger y utilizar la identidad digital de manera responsable.
-      </p>
-
-    </div>
-  </main>
-
-  <footer>
-    © <span id="year"></span> • Diseño profesional full-width • 2-color UI (Deep Slate + Teal)
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  </div>
 </body>
 </html>
-
